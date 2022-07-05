@@ -85,6 +85,11 @@ img {
 .site-nav {
   display: flex;
 }
+
+.site-nav .link {
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .site-nav .link.current {
   position: relative;
   color: var(--accent-color);
@@ -168,7 +173,10 @@ img {
   line-height: 1.33;
   letter-spacing: 0.02em;
   align-items: center;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .add-list:hover,
 .add-list:focus {
   color: var(--accent-color);
@@ -181,6 +189,7 @@ img {
 .add-icons {
   margin-right: 10px;
   fill: var(--primary-text-color);
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* SECTIONS */
@@ -245,10 +254,65 @@ img {
   letter-spacing: 0.06em;
   text-decoration: none;
   cursor: pointer;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .hero-btn:hover,
 .hero-btn:focus {
   background-color: var(--accent-color);
+}
+
+.backdrop {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  opacity: 1;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop.is-hidden {
+  /* visibility: hidden; */
+  opacity: 0;
+  pointer-events: none;
+}
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  justify-content: end;
+  min-width: 528px;
+  min-height: 581px;
+  background-color: var(--primery-bg-color);
+
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.m-btn {
+  display: inline-block;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border-radius: 50%;
+  background-color: var(--primery-bg-color);
+  border-color: rgba(0, 0, 0, 0.1);
+  width: 30px;
+  height: 30px;
+}
+
+.modal-btn {
+  width: 11px;
+  height: 11px;
 }
 
 /* section benefits */
@@ -411,6 +475,8 @@ img {
   width: 44px;
   height: 44px;
   border-radius: 50%;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .icon {
@@ -449,10 +515,14 @@ img {
   color: var(--icons-color);
   align-items: center;
   justify-content: center;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .icon-clients {
   fill: currentcolor;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .icon-clients:hover,
 .icon-clients:active {
@@ -498,6 +568,8 @@ address {
   font-size: 14px;
   line-height: 1.71;
   letter-spacing: 0.03em;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .footer-main {
   color: var(--primery-bg-color);
@@ -534,6 +606,7 @@ address {
   fill: var(--primery-bg-color);
   align-items: center;
   justify-content: center;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-icon-link {
@@ -544,6 +617,8 @@ address {
   height: 44px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-icon-link:hover,
@@ -580,6 +655,8 @@ address {
 
   border-radius: 4px;
   border: none;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button:hover,
@@ -595,7 +672,10 @@ address {
 
 .button-item {
   display: inline-block;
+
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .button-item:not(:last-child) {
   margin-right: 8px;
 }
@@ -607,36 +687,58 @@ address {
 
 /* CARDS COLLECTION */
 
-.card-thumb {
-  position: relative;
+.portfolio {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -30px;
+  margin-left: -30px;
+}
+.portfolio > .item {
+  flex-basis: calc(100% / 3 - 30px);
+  margin-top: 30px;
+  margin-left: 30px;
 }
 
-.portfolio-text {
+.portfolio-link {
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.portfolio-link:focus,
+.portfolio-link:hover {
+  box-shadow: 1px 4px 6px 0px rgba(0, 0, 0, 0.16),
+    0px 4px 4px 0px rgba(0, 0, 0, 0.06), 0px 1px 1px 0px rgba(0, 0, 0, 0.12);
+}
+.portfolio-link:hover .overlay {
+  transform: translatey(0%);
+  opacity: 1;
+}
+.overlay {
   position: absolute;
+  display: block;
+  text-decoration: none;
+  transform: translatey(100%);
+  opacity: 0;
+}
+.overlay > p {
   padding: 63px 24px;
-  color: var(--primery-bg-color);
   font-weight: 400;
   font-size: 18px;
   line-height: 1.55;
   letter-spacing: 0.03em;
   bottom: 0%;
+  color: var(--primery-bg-color);
   background-color: rgba(33, 150, 243, 0.9);
-  opacity: 0;
 }
 
-.item:hover .portfolio-text {
-  opacity: 1;
+/* TEXT */
+
+.card-text {
+  padding: 20px 24px;
+  border: 1px solid #eeeeee;
+  border-top: none;
 }
 
-.portfolio-link {
-  display: block;
-  text-decoration: none;
-}
-.portfolio-link:active,
-.portfolio-link:hover {
-  box-shadow: 1px 4px 6px 0px rgba(0, 0, 0, 0.16),
-    0px 4px 4px 0px rgba(0, 0, 0, 0.06), 0px 1px 1px 0px rgba(0, 0, 0, 0.12);
-}
 .portfolio-menu {
   color: var(--primary-text-color);
   font-weight: 700;
@@ -652,66 +754,4 @@ address {
   font-size: 16px;
   line-height: 1.91;
   letter-spacing: 0.03em;
-}
-.collection {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 50px;
-  padding-bottom: 94px;
-}
-
-.portfolio {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: -30px;
-  margin-left: -30px;
-}
-.portfolio > .item {
-  flex-basis: calc(100% / 3 - 30px);
-  margin-top: 30px;
-  margin-left: 30px;
-}
-.card-text {
-  padding: 20px 24px;
-  border: 1px solid #eeeeee;
-  border-top: none;
-}
-
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-.backdrop.is-hidden {
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  display: flex;
-  transform: translate(-50%, -50%);
-
-  justify-content: end;
-  min-width: 528px;
-  min-height: 581px;
-  background-color: var(--primery-bg-color);
-}
-
-.m-btn {
-  margin-top: 8px;
-  margin-right: 8px;
-  justify-content: end;
-  flex-direction: row;
-  align-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
 }
