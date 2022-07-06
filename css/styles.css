@@ -262,6 +262,7 @@ img {
   background-color: var(--accent-color);
 }
 
+/* MODAL */
 .backdrop {
   position: fixed;
 
