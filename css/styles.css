@@ -700,7 +700,6 @@ address {
 }
 
 .portfolio-link {
-  position: relative;
   overflow: hidden;
   transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -714,13 +713,14 @@ address {
   opacity: 1;
 }
 .overlay {
-  position: absolute;
+  position: relative;
   display: block;
   text-decoration: none;
   transform: translatey(100%);
   opacity: 0;
 }
 .overlay > p {
+  position: absolute;
   padding: 63px 24px;
   font-weight: 400;
   font-size: 18px;
