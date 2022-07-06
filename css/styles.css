@@ -700,35 +700,45 @@ address {
 }
 
 .portfolio-link {
-  overflow: hidden;
-  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+  text-decoration: none;
+  transition: box-shadow 25ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .portfolio-link:focus,
 .portfolio-link:hover {
   box-shadow: 1px 4px 6px 0px rgba(0, 0, 0, 0.16),
     0px 4px 4px 0px rgba(0, 0, 0, 0.06), 0px 1px 1px 0px rgba(0, 0, 0, 0.12);
 }
-.portfolio-link:hover .overlay {
-  transform: translatey(0%);
-  opacity: 1;
+.item:hover .overlay {
+  transform: translateY(0%);
 }
-.overlay {
+
+.overlay-box {
   position: relative;
-  display: block;
-  text-decoration: none;
-  transform: translatey(100%);
-  opacity: 0;
+  width: 370px;
+  height: 294px;
+  overflow: hidden;
 }
-.overlay > p {
+
+.overlay {
   position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(33, 150, 243, 0.9);
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.overlay-text {
+  margin: 0;
   padding: 63px 24px;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.55;
   letter-spacing: 0.03em;
-  bottom: 0%;
   color: var(--primery-bg-color);
-  background-color: rgba(33, 150, 243, 0.9);
+  text-decoration: none;
 }
 
 /* TEXT */
@@ -745,6 +755,7 @@ address {
   font-size: 18px;
   line-height: 2;
   letter-spacing: 0.06em;
+  text-decoration: none;
 }
 
 .portfolio-selection {
@@ -754,4 +765,5 @@ address {
   font-size: 16px;
   line-height: 1.91;
   letter-spacing: 0.03em;
+  text-decoration-style: none;
 }
